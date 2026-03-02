@@ -15,7 +15,7 @@ public class Main {
 		
 		for(int i = 0; i < mentalHealthList.size() && i < mentalHealthDescriptions.size(); i++)
 		{
-			Information info = new Information(mentalHealthList.get(i), mentalHealthDescriptions.get(i));
+			Information info = new Information(mentalHealthList.get(i), mentalHealthDescriptions.get(i)); //creates information objects of mental health resources
 			mentalHealthTotal.add(info);
 		}
 			
