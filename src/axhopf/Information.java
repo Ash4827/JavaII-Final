@@ -28,13 +28,13 @@ public class Information {
 		setLink("");
 	}
 	
-	public Information(String link, String description)
+	public Information(String link, String description) //main constructor
 	{
 		setLink(link);
 		setDescription(description);
 	}
 	
-	public void print(ArrayList<Information> info)
+	public void print(ArrayList<Information> info) //print function
 	{
 		for(Information item : info)
 		{
@@ -45,7 +45,7 @@ public class Information {
 	@Override
 	public String toString()
 	{
-		return String.format("%s, %s", this.getLink(), this.getDescription());
+		return String.format("%s:\n %s\n", this.getDescription(), this.getLink()); //toString formatted
 	}
 
 	
