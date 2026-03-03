@@ -25,13 +25,18 @@ public class Main {
 		ArrayList<Information> SafeSpaceList = conversion(SafeSpaces);
 		ArrayList<Information> ProviderList = conversion(Providers);
 		
+		DiversityCalculator calcIndex = new DiversityCalculator();
 		Information object = new Information();
 		Scanner scnr = new Scanner(System.in);
 		String input = "";
-		String resourceInput = "";
+		String resourceInput;
 		String firstName; //user info
 		String lastName;
 		int age;
+		int numBlack;
+		int numAsian;
+		int numHispanic;
+		int numWhite;
 		
 		System.out.println("Enter Your First Name:");
 		firstName = scnr.next();
@@ -40,15 +45,15 @@ public class Main {
 		System.out.println("Enter Your Age:");
 		age = scnr.nextInt();
 		
-		User user = new User(firstName, lastName, age); //user object
+		User user = new User(firstName, lastName, age); //user object if needed
 		
 		
-		while(!input.equals("-1")) { //TODO: wont let you go back into the switch statement after leaving!!!
+		while(!input.equals("-1")) { 
 		System.out.println("Welcome, " + firstName + " " + lastName + ", what would you like to do?");
-		System.out.println("1: Access BIPOC Mental Health Resources\n\n-1 To Exit");				
+		System.out.println("1: Access BIPOC Mental Health Resources\n2: Calculate Diversity in Any Group\n\n-1 To Exit");				
 		
 		input = scnr.next();
-		
+		resourceInput = "";
 		switch(input)
 		{
 		case "1":
@@ -69,8 +74,17 @@ public class Main {
 			
 		break;
 		case "2":
-			
-		//something here 
+		System.out.println("Enter the number of Black people:");
+		numBlack = scnr.nextInt();
+		System.out.println("Enter the number of Asian people:");
+		numAsian = scnr.nextInt();
+		System.out.println("Enter the number of Hispanic people:");
+		numHispanic = scnr.nextInt();
+		System.out.println("Enter the number of White people:");
+		numWhite = scnr.nextInt();
+		double index = calcIndex.CalculateDiversityIndex(numBlack, numAsian, numHispanic, numWhite);
+		System.out.printf("There is a %.2f%% chance 2 people will be different races if picked at random!", index);
+		System.out.println();
 			
 		break;
 		case "3":
@@ -78,10 +92,14 @@ public class Main {
 		//something here
 			
 		break;
+		default:
+		break;
 		//etc
 		}				//main menu as a switch statement ^
 		
 		}//end while
+		
+		scnr.close();
 	}
 
 }
