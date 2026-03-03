@@ -4,34 +4,26 @@ import java.util.ArrayList;
 
 public class Information {
 	
-	private String link;
-	private String description;
 	
-	public String getLink() {
-		return link;
+	private String info;
+	
+	public String getInfo() {
+		return info;
 	}
 
-	public void setLink(String link) {
-		this.link = link;
-	}
-	
-	public String getDescription() {
-		return description;
+	public void setInfo(String info) {
+		this.info = info;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
 	
 	public Information() //default constructor
 	{
-		setLink("");
+		setInfo("");
 	}
 	
-	public Information(String link, String description) //main constructor
+	public Information(String info)
 	{
-		setLink(link);
-		setDescription(description);
+		setInfo(info);
 	}
 	
 	public void print(ArrayList<Information> info) //print function
@@ -45,9 +37,10 @@ public class Information {
 	@Override
 	public String toString()
 	{
-		return String.format("%s:\n %s\n", this.getDescription(), this.getLink()); //toString formatted
+		return String.format("%s\n", this.getInfo()); //toString formatted
 	}
 
+	
 	
 	
 
