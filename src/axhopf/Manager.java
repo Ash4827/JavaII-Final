@@ -1,11 +1,18 @@
 package axhopf;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Manager {
 	
 	private ArrayList<HistoricalFigure> figures = new ArrayList<HistoricalFigure>(); //historical figures list
+	
+	public ArrayList<HistoricalFigure> getArray()
+	{
+		return this.figures;
+	}
+	
 	
 	public void print(ArrayList<Resource> info) //print function for resource arrays
 	{
@@ -35,7 +42,14 @@ public class Manager {
 	{
 		for(HistoricalFigure figure : figures)
 		{
-			System.out.println(figure);
+			System.out.println(figure.getName());
 		}
+	}
+	
+	public <T extends Resource> int searchArray(ArrayList<T> arrayList, T target) //Generic method for searching array lists
+	{
+		Collections.sort(arrayList);
+		int index = Collections.binarySearch(arrayList, target);
+		return index;
 	}
 }
