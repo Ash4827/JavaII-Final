@@ -3,7 +3,7 @@ package axhopf;
 /*Main parent class for any kinds of resources*/
 
 
-public class Resource {
+public class Resource implements Comparable<Resource> {
 	
 	private String name;
 	private String description;
@@ -65,6 +65,12 @@ public class Resource {
 		return this.getInfo();
 		
 		return String.format("%s %d: %s", this.name, this.year, this.description);
+	}
+	@Override
+	public int compareTo(Resource o) {
+		// TODO Auto-generated method stub
+		
+		return this.name.compareToIgnoreCase(o.getName());
 	}
 	
 	
