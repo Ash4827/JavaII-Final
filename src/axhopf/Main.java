@@ -20,8 +20,10 @@ public class Main {
 		ArrayList<Resource> ProviderList = manager.conversion(Providers);
 		
 		HistoricalFigure Coachman = new HistoricalFigure("Alice Coachman", "Gold Medalist", 1948, "Was denied multiple times to compete in the olympics; Even so, she ran barefoot on dirt roads and used sticks to practice her high jump, eventually catching the attention of Tuskegee Institute and broke records.", "Bonn, T. (2026, February 1). 8 Black pioneers who were somehow overlooked in the history books. Katie Couric Media. https://katiecouric.com/entertainment/little-known-black-historical-figures/");
+		HistoricalFigure Daly = new HistoricalFigure("Marie Daly", "Biochemist", 1947, "She was the first African American woman to earn a PhD in the United States!", "Celebrating Black History Month - Marie Maynard Daly | Molecular Biophysics and Biochemistry. (n.d.). https://mbb.yale.edu/news/celebrating-black-history-month-marie-maynard-daly");
 		
 		manager.addFigure(Coachman);
+		manager.addFigure(Daly);
 		
 		DiversityCalculator calcIndex = new DiversityCalculator();
 		
@@ -48,7 +50,7 @@ public class Main {
 		
 		while(!input.equals("-1")) { 
 		System.out.println("Welcome, " + firstName + " " + lastName + ", what would you like to do?");
-		System.out.println("1: Access BIPOC Mental Health Resources\n2: Calculate Diversity in Any Group\n3: View Historical Figures\n\n-1 To Exit");				
+		System.out.println("1: Access BIPOC Mental Health Resources\n2: Calculate Diversity in Any Group\n3: View Historical Figures\n\n-1 To Exit\n");				
 		
 		input = scnr.next();
 		resourceInput = "";
@@ -86,9 +88,29 @@ public class Main {
 			
 		break;
 		case "3":
+		resourceInput = "";
+		System.out.println("\nEnter a name to learn more about a specific figure (or type -1)\n");
+		manager.printFigures(); 
+		while(!resourceInput.equals("-1")) {
 		
-		manager.printFigures(); //TODO add more historical figures, allow user to search for a specific figure
-			
+		scnr.nextLine();
+		String search = scnr.nextLine();
+		if(search.equals("-1"))
+		{
+			resourceInput = "-1";
+		}
+		else {
+			HistoricalFigure target = new HistoricalFigure();
+			target.setName(search);
+			int num = manager.searchArray(manager.getArray(), target);
+			if(num >= 0)
+			System.out.println("Found!\n" + manager.getArray().get(num));
+			else
+			System.out.println("Figure not found :[");
+		}
+		
+		
+		}
 		break;
 		default:
 		break;
