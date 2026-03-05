@@ -1,5 +1,6 @@
 package axhopf;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,46 +12,48 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		Manager manager = new Manager();
+		manager.loadData();
 		
-		List<String> ArticlesInfo = List.of("Mental Health America\nhttps://mhanational.org/bipoc-mental-health/", "NAMI Seattle Mental Health Resources\nhttps://namiseattle.org/support-resources/bipoc-mental-health-resources/");
-		List<String> SafeSpaces = List.of("Black Emotional and Mental Health Collective\nhttps://wellness.beam.community/", "BIPOC Adoptees Support\nhttps://bipocadoptees.space/forms/submit-resource");
-		List<String> Providers = List.of("University of Washington BIPOC Resources\nhttps://geography.washington.edu/community-sourced-resources-bipoc-mental-health");
-		ArrayList<Resource> ArticleInfo = manager.conversion(ArticlesInfo);
-		ArrayList<Resource> SafeSpaceList = manager.conversion(SafeSpaces);
-		ArrayList<Resource> ProviderList = manager.conversion(Providers);
 		
-		HistoricalFigure Coachman = new HistoricalFigure("Alice Coachman", "Gold Medalist", 1948, "Was denied multiple times to compete in the olympics; Even so, she ran barefoot on dirt roads and used sticks to practice her high jump, eventually catching the attention of Tuskegee Institute and broke records.", "Bonn, T. (2026, February 1). 8 Black pioneers who were somehow overlooked in the history books. Katie Couric Media. https://katiecouric.com/entertainment/little-known-black-historical-figures/");
-		HistoricalFigure Daly = new HistoricalFigure("Marie Daly", "Biochemist", 1947, "She was the first African American woman to earn a PhD in the United States!", "Celebrating Black History Month - Marie Maynard Daly | Molecular Biophysics and Biochemistry. (n.d.). https://mbb.yale.edu/news/celebrating-black-history-month-marie-maynard-daly");
-		
-		manager.addFigure(Coachman);
-		manager.addFigure(Daly);
 		
 		DiversityCalculator calcIndex = new DiversityCalculator();
 		
 		Scanner scnr = new Scanner(System.in);
 		String input = "";
 		String resourceInput;
-		String firstName; //user info
-		String lastName;
-		int age;
+		String name;
+		int age = -1;
 		int numBlack;
 		int numAsian;
 		int numHispanic;
 		int numWhite;
+		boolean valid = false;
 		
-		System.out.println("Enter Your First Name:");
-		firstName = scnr.next();
-		System.out.println("Enter Your Last Name:"); //prompt for user info
-		lastName = scnr.next();
+	
+		System.out.println("Enter Your Full Name:");
+		name = scnr.next();
+		
+		while(!valid) {
 		System.out.println("Enter Your Age:");
+		try {
 		age = scnr.nextInt();
+		if(age >= 0)
+		valid = true;
+		}
+		catch(InputMismatchException e)
+		{
+			System.out.println("Error: Enter a valid age");
+			scnr.next();
+		}
+		}
 		
 		
-		
+		User user = new User(name, age);
 		
 		while(!input.equals("-1")) { 
-		System.out.println("Welcome, " + firstName + " " + lastName + ", what would you like to do?");
-		System.out.println("1: Access BIPOC Mental Health Resources\n2: Calculate Diversity in Any Group\n3: View Historical Figures\n\n-1 To Exit\n");				
+		System.out.println("Welcome, " + name + ", what would you like to do?");
+		System.out.println("1: Access BIPOC Mental Health Resources\n2: Calculate Diversity in Any Group\n3: View Historical Figures\n4. Join a Support Group\n\n-1 To Exit\n");				
+		
 		
 		input = scnr.next();
 		resourceInput = "";
@@ -61,17 +64,19 @@ public class Main {
 		{
 			System.out.println("Select Resource:\n1.Articles and Information\n2. Safe Space Forums\n3.Find a Provider\n\nType -1 To Go Back");
 			resourceInput = scnr.next();
-			if(resourceInput.equals("1"))
-			manager.print(ArticleInfo);
-			
-			if(resourceInput.equals("2"))
-			manager.print(SafeSpaceList);
-			
-			if(resourceInput.equals("3"))
-			manager.print(ProviderList);
+			if(resourceInput.equals("1")) {
+			ArrayList<Resource> articles = manager.getArticleInfo();
+		    manager.print(articles);
+			}
+			if(resourceInput.equals("2")) {
+			ArrayList<Resource> SafeSpaces = manager.getSafeSpaceList();
+			manager.print(SafeSpaces);
+			}
+			if(resourceInput.equals("3")) {
+			ArrayList<Resource> Providers = manager.getProviderList();
+			manager.print(Providers);
+			}
 		}
-		
-			
 		break;
 		case "2":
 		System.out.println("Enter the number of Black people:");
@@ -89,6 +94,7 @@ public class Main {
 		break;
 		case "3":
 		resourceInput = "";
+		while(resourceInput != "-1") {
 		System.out.println("\nEnter a name to learn more about a specific figure (or type -1)\n");
 		manager.printFigures(); 
 		while(!resourceInput.equals("-1")) {
@@ -102,20 +108,33 @@ public class Main {
 		else {
 			HistoricalFigure target = new HistoricalFigure();
 			target.setName(search);
-			int num = manager.searchArray(manager.getArray(), target);
+			int num = manager.searchArray(manager.getFiguresArray(), target);
 			if(num >= 0)
-			System.out.println("Found!\n" + manager.getArray().get(num));
+			System.out.println("Found!\n" + manager.getFiguresArray().get(num));
 			else
 			System.out.println("Figure not found :[");
+				}
+			}
 		}
-		
-		
-		}
+		break;
+		case "4":
+		resourceInput = "";
+		manager.printSupport();
+		while(!resourceInput.equals("-1")) {
+		System.out.println("Type The Name of The Group You'd Like To Join (or Type -1):\n");
+		scnr.nextLine();
+		resourceInput = scnr.nextLine();
+		manager.addUserToGroupName(resourceInput, user);
+		resourceInput = "-1";
+		}	
 		break;
 		default:
 		break;
 		//etc
-		}				//main menu as a switch statement ^
+				}				//main menu as a switch statement ^
+			 // end try?
+		
+		
 		
 		}//end while
 		
