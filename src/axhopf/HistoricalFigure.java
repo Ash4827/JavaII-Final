@@ -13,16 +13,16 @@ public class HistoricalFigure extends Resource{
 	
 	public HistoricalFigure()
 	{
-		super.setName("");
-		super.setDescription("");
-		super.setYear(-1);
+		setName("");
+		setDescription("");
+		setYear(-1);
 		setContribution("");
 		
 	}
 	
 	public HistoricalFigure(String name, String desc, int year, String contribution, String source)
 	{
-		super.setName(name); super.setDescription(desc); super.setYear(year); super.setInfo(source); setContribution(contribution);
+		setName(name); setDescription(desc); setYear(year); setInfo(source); setContribution(contribution);
 	}
 	
 	@Override
