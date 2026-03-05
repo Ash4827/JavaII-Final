@@ -14,9 +14,8 @@ public class Main {
 		Manager manager = new Manager();
 		manager.loadData();
 		
-		
-		
 		DiversityCalculator calcIndex = new DiversityCalculator();
+		Calender calender = new Calender();
 		
 		Scanner scnr = new Scanner(System.in);
 		String input = "";
@@ -29,7 +28,6 @@ public class Main {
 		int numWhite;
 		boolean valid = false;
 		
-	
 		System.out.println("Enter Your Full Name:");
 		name = scnr.next();
 		
@@ -127,6 +125,10 @@ public class Main {
 		manager.addUserToGroupName(resourceInput, user);
 		resourceInput = "-1";
 		}	
+		break;
+		case "5":
+		System.out.println("Enter the month (as an integer) that you want to view the events of:\n");
+		calender.showEvents(scnr.nextInt());
 		break;
 		default:
 		break;
