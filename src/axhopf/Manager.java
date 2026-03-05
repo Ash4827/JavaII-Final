@@ -86,10 +86,21 @@ public class Manager {
 	    healingCircle.addMember(new User("Martin Gray", 23));
 	    healingCircle.addMember(new User("Peyton Manning", 54));
 	    healingCircle.addMember(new User("Lora Plankton", 32));
+	    healingCircle.addMember(new User("George Thurston", 42));
 	    this.addSupport(healingCircle);
 	    
 	    SupportGroup generationalEchoes = new SupportGroup("Generational Echoes", "A trauma-informed circle exploring ancestral history, breaking cycles, and celebrating cultural resilience in modern life.", new ArrayList<User>());
+	    generationalEchoes.addMember(new User("John Smith", 37));
+	    generationalEchoes.addMember(new User("Tyrone Johnson", 52));
+	    generationalEchoes.addMember(new User("Amaraj Taro", 24));
 	    this.addSupport(generationalEchoes);
+	    
+	    SupportGroup snohomishforEquity = new SupportGroup("Snohomish for Equity", "A community for raising awareness of and providing opportunities for those facing racial discrimination", new ArrayList<User>());
+	    snohomishforEquity.addMember(new User("Tabitha Baty", 41));
+	    snohomishforEquity.addMember(new User("Denise Gertis", 38));
+	    snohomishforEquity.addMember(new User("Lisa Odom", 44));
+	    snohomishforEquity.addMember(new User("Hanna Keiner", 34));
+	    this.addSupport(snohomishforEquity);
 	    
 	    List<String> articlesInfo = List.of("Mental Health America\nhttps://mhanational.org/bipoc-mental-health/", "NAMI Seattle Mental Health Resources\nhttps://namiseattle.org/support-resources/bipoc-mental-health-resources/");
 	    this.articleInfo = this.conversion(articlesInfo); 
