@@ -5,10 +5,10 @@ package axhopf;
 
 public class Resource implements Comparable<Resource> {
 	
-	private String name;
-	private String description;
-	private String info;
-	private int year;
+	protected String name;
+	protected String description;
+	protected String info;
+	protected int year;
 	
 	
 	public String getName() {
@@ -58,13 +58,21 @@ public class Resource implements Comparable<Resource> {
 		setInfo("");
 	}
 	
-	@Override
-	public String toString()
+	public Resource(String name, String description, int year, String info)
 	{
-		if(this.getInfo() != null) //toString formatted
-		return this.getInfo();
-		
-		return String.format("%s %d: %s", this.name, this.year, this.description);
+		setName(name);
+		setDescription(description);
+		setYear(year);
+		setInfo(info);
+	}
+	
+	@Override
+	public String toString() {
+	    if(this.info != null && !this.info.isEmpty()) {
+	        return this.info;
+	    }
+	    
+	    return String.format("%s %d: %s", this.name, this.year, this.description);
 	}
 	@Override
 	public int compareTo(Resource o) {
