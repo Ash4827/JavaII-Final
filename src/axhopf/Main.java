@@ -29,7 +29,7 @@ public class Main {
 		boolean valid = false;
 		
 		System.out.println("Enter Your Full Name:");
-		name = scnr.next();
+		name = scnr.nextLine();
 		
 		while(!valid) {
 		System.out.println("Enter Your Age:");
