@@ -12,7 +12,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		Manager manager = new Manager();
-		manager.loadData();
+		manager.loadData(); //brings in all critical information for the program
 		
 		DiversityCalculator calcIndex = new DiversityCalculator();
 		Calender calender = new Calender();
@@ -34,7 +34,7 @@ public class Main {
 		while(!valid) {
 		System.out.println("Enter Your Age:");
 		try {
-		age = scnr.nextInt();
+		age = scnr.nextInt(); //try-catch for user age input
 		if(age >= 0)
 		valid = true;
 		}

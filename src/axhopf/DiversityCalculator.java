@@ -23,7 +23,7 @@ public class DiversityCalculator {
 		double simpsonIndex = (double) sum/totalProduct;
 		simpsonIndex = 1-simpsonIndex;
 		
-		return simpsonIndex*100;
+		return simpsonIndex*100; //converts from a probability to a percentage
 	}
 
 }

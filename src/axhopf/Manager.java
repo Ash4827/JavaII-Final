@@ -37,7 +37,7 @@ public class Manager {
 		return list;
 	}
 	
-	public void addFigure(HistoricalFigure figure)
+	public void addFigure(HistoricalFigure figure) //adds a historical figure object (to the figures array list)
 	{
 		figures.add(figure);
 	}
@@ -57,7 +57,7 @@ public class Manager {
 		}
 	}
 	
-	public void printFigures()
+	public void printFigures() //print historical figures
 	{
 		for(HistoricalFigure figure : figures)
 		{
@@ -65,7 +65,7 @@ public class Manager {
 		}
 	}
 	
-	public void printSupport()
+	public void printSupport() //print support groups
 	{
 		for(SupportGroup group : supportList)
 		{
